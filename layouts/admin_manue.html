@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Sidebar</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    /* Sidebar menu styles */
+    .admin_sideManue {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 250px;
+      height: 100%;
+      background-color: #333;
+      color: white;
+      transition: transform 0.3s ease;
+      z-index: 1000;
+    }
+
+    .admin_sideManue ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .admin_sideManue ul li a {
+      display: block;
+      padding: 15px;
+      color: white;
+      text-decoration: none;
+    }
+
+    .admin_sideManue ul li a:hover {
+      background-color: #555;
+    }
+
+    .submenu {
+      display: none;
+      list-style-type: none;
+      padding-left: 15px;
+    }
+
+    .menu-toggle-icon {
+      font-size: 24px;
+      padding: 10px;
+      cursor: pointer;
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      background-color: #333;
+      color: white;
+      z-index: 1000;
+      border-radius: 5px;
+    }
+
+    /* Mobile-specific styles */
+    @media (max-width: 768px) {
+      .admin_sideManue {
+        transform: translateX(-100%);
+      }
+
+      .menu-toggle-icon {
+        display: block;
+      }
+
+      .admin_sideManue.menu-open {
+        transform: translateX(0);
+      }
+
+      .submenu-toggle.active + .submenu {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Toggle Icon -->
+<div class="menu-toggle-icon" onclick="toggleMenu()">☰</div>
+
+<!-- Sidebar Menu -->
+<div class="admin_sideManue">
+  <ul>
+    <li><a href="admin.php"><i class="glyphicon glyphicon-home"></i><span>Dashboard</span></a></li>
+    <li><a href="#" class="submenu-toggle" onclick="toggleSubMenu(this)"><i class="glyphicon glyphicon-user"></i><span>User Management</span></a>
+      <ul class="submenu">
+        <li><a href="group.php">Manage Groups</a></li>
+        <li><a href="users.php">Manage Users</a></li>
+      </ul>
+    </li>
+    <li><a href="categorie.php"><i class="glyphicon glyphicon-indent-left"></i><span>Categories</span></a></li>
+    <li><a href="#" class="submenu-toggle" onclick="toggleSubMenu(this)"><i class="glyphicon glyphicon-th-large"></i><span>Products</span></a>
+      <ul class="submenu">
+        <li><a href="product.php">Manage Products</a></li>
+        <li><a href="add_product.php">Add Products</a></li>
+      </ul>
+    </li>
+    <li><a href="media.php"><i class="glyphicon glyphicon-picture"></i><span>Media Files</span></a></li>
+    <li><a href="#" class="submenu-toggle" onclick="toggleSubMenu(this)"><i class="glyphicon glyphicon-credit-card"></i><span>Sales</span></a>
+      <ul class="submenu">
+        <li><a href="sales.php">Manage Sales</a></li>
+        <li><a href="add_sale.php">Add Sale</a></li>
+      </ul>
+    </li>
+    <li><a href="#" class="submenu-toggle" onclick="toggleSubMenu(this)"><i class="glyphicon glyphicon-credit-card"></i><span>Sold money</span></a>
+      <ul class="submenu">
+        <li><a href="manage_sold_money.php">Manage money</a></li>
+        <li><a href="add_sold_money.php">የተሸጠ ብር ይመዝግቡ</a> </li>
+      </ul>
+    </li>
+    <li><a href="#" class="submenu-toggle" onclick="toggleSubMenu(this)"><i class="glyphicon glyphicon-duplicate"></i><span>Sales Report</span></a>
+      <ul class="submenu">
+        <li><a href="sales_report.php">Sales by dates</a></li>
+        <li><a href="monthly_sales.php">Monthly sales</a></li>
+        <li><a href="daily_sales.php">Daily sales</a></li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+<!-- Bootstrap JS, Popper.js, and jQuery (needed for Bootstrap's JavaScript components) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+  // Function to toggle sidebar on mobile
+  function toggleMenu() {
+    document.querySelector('.admin_sideManue').classList.toggle('menu-open');
+  }
+
+  // Function to toggle submenu visibility
+  function toggleSubMenu(element) {
+    element.classList.toggle('active');
+    const submenu = element.nextElementSibling;
+    if (submenu.style.display === 'block') {
+      submenu.style.display = 'none';
+    } else {
+      submenu.style.display = 'block';
+    }
+  }
+</script>
+
+</body>
+</html>
